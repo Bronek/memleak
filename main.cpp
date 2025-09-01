@@ -7,6 +7,8 @@
 #ifdef __APPLE__
 #include <mach/mach_init.h>
 #include <mach/task.h>
+#else
+#include <sys/resource.h>
 #endif
 
 long report1()
