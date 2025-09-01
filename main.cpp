@@ -62,13 +62,11 @@ int main(int argc, char **argv)
     char c = '\0';
     char s = '\0';
     auto const ret = std::sscanf(argv[1], "%i%c%c", &d, &c, &s);
-    if (ret < 1 || ret > 2 || d < 1)
-    {
+    if (ret < 1 || ret > 2 || d < 1 || (c != 'S' && c != '\0')) {
       std::cerr << "expected integral number of MB to leak, optionally suffixed with S" << '\n';
       return 13;
     }
-    if (c == 's' || c == 'S')
-      sleep = true;
+    sleep = (c == 'S');
     size = d;
 
     std::cout << "will leak " << size << "MB";
